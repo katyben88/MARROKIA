@@ -60,8 +60,25 @@ function openAssistant(){chatOverlay.classList.add('show');document.body.style.o
 function closeAssistant(){chatOverlay.classList.remove('show');document.body.style.overflow=''}
 function addMsg(text,type){const d=document.createElement('div');d.className='msg '+type;d.textContent=text;chatMessages.appendChild(d);chatMessages.scrollTop=chatMessages.scrollHeight}
 function quickAsk(text){openAssistant();addMsg(text,'user');setTimeout(()=>demoReply(text),350)}
-function sendMessage(){const input=document.getElementById('chatInput');const text=input.value.trim();if(!text)return;input.value='';addMsg(text,'user');setTimeout(()=>demoReply(text),350)}
-function demoReply(text){const q=text.toLowerCase();let r='Je peux vous aider à choisir un soin MARROKIA, connaître son prix ou vérifier les produits disponibles.';if(q.includes('sèche')||q.includes('seche'))r='Pour une peau sèche, je vous orienterais vers l’Huile Corporelle MARROKIA — 150 DH. Elle fait partie de notre sélection de soins pour le corps.';else if(q.includes('routine')||q.includes('marocaine'))r='Pour une routine marocaine du corps, vous pouvez commencer par le Savon Beldi (90 DH), puis le Gommage (100 DH), et terminer par l’Huile Corporelle (150 DH).';else if(q.includes('disponible')||q.includes('produit'))r='Notre sélection actuelle comprend : Savon Beldi — 90 DH, Tébrima — 150 DH, Gommage — 100 DH et Huile Corporelle — 150 DH.';else if(q.includes('prix')||q.includes('combien'))r='Bien sûr. Dites-moi simplement le nom du produit MARROKIA qui vous intéresse et je vous indique son prix.';addMsg(r,'bot')}
-document.getElementById('chatInput').addEventListener('keydown',e=>{if(e.key==='Enter')sendMessage()});
-</script>
-</body></html>
+async function sendMessage(){
+  const input=document.getElementById('chatInput');
+  const text=input.value.trim();
+  if(!text)return;
+  input.value='';
+  addMsg(text,'user');
+  addMsg('...','bot-typing');
+  try{
+    const res=await fetch('https://katben.app.n8n.cloud/webhook/marrokia-chat',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({message:text})
+    });
+    const data=await res.json();
+    document.querySelector('.msg.bot-typing')?.remove();
+    addMsg(data.reponse||'Sme7 liya, ma fhemtch mzyan. 3awed jarreb.','bot');
+  }catch(err){
+    document.querySelector('.msg.bot-typing')?.remove();
+    addMsg('Sme7 liya, kayn mochkil technique daba. 3awed jarreb men b3d.','bot');
+    console.error('Erreur MARROKIA AI:',err);
+  }
+}
