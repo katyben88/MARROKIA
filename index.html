@@ -38,13 +38,35 @@ nav{height:110px;background:#031b13;color:#e7bf65;display:flex;align-items:cente
 <article class="card"><div class="visual"><img src="huile-corporelle.jpg"></div><div class="body"><h3>HUILE CORPORELLE</h3><p>Nourrit, hydrate et sublime tous les types de peau.</p><div class="price">150 DH</div><button class="btn discover" onclick="show('huile')">DÉCOUVRIR</button></div></article>
 </div></div></section>
 
-<section class="ai" id="assistant"><div class="wrap"><div class="ai-box"><div class="ai-copy"><div class="ai-badge">✨ VOTRE ASSISTANT BEAUTÉ IA</div><h2>Besoin d’aide pour choisir votre soin ?</h2><p>MARROKIA vous accompagne pour trouver le soin adapté à vos besoins, comprendre nos produits et découvrir une routine beauté marocaine personnalisée.</p><div class="ai-pills"><button onclick="quickAsk('Je cherche une routine marocaine pour le corps')">🌿 Routine marocaine</button><button onclick="quickAsk('Quel produit pour une peau sèche ?')">💧 Peau sèche</button><button onclick="quickAsk('Quels produits sont disponibles ?')">🛍 Produits disponibles</button></div></div><button class="btn ai-btn" onclick="openAssistant()">✨ CONSEILLER BEAUTÉ IA</button></div></div></section>
+<section class="ai" id="assistant"><div class="wrap"><div class="ai-box"><div class="ai-copy"><div class="ai-badge">✨ VOTRE ASSISTANT BEAUTÉ IA</div><h2>Besoin d'aide pour choisir votre soin ?</h2><p>MARROKIA vous accompagne pour trouver le soin adapté à vos besoins, comprendre nos produits et découvrir une routine beauté marocaine personnalisée.</p><div class="ai-pills"><button onclick="quickAsk('Je cherche une routine marocaine pour le corps')">🌿 Routine marocaine</button><button onclick="quickAsk('Quel produit pour une peau sèche ?')">💧 Peau sèche</button><button onclick="quickAsk('Quels produits sont disponibles ?')">🛍 Produits disponibles</button></div></div><button class="btn ai-btn" onclick="openAssistant()">✨ CONSEILLER BEAUTÉ IA</button></div></div></section>
 
-<section class="more" id="apropos"><div class="wrap"><div class="about-intro"><h2>L’HÉRITAGE MARROKIA</h2><p>MARROKIA revisite les rituels traditionnels marocains de beauté à travers une sélection de soins inspirés du savoir-faire ancestral marocain, avec une approche moderne et personnalisée grâce à l’intelligence artificielle.</p></div><div class="values"><div class="value"><div class="icon">🌿</div><h3>Tradition & Nature</h3><p>Des soins inspirés des rituels marocains et de leurs savoir-faire traditionnels.</p></div><div class="value"><div class="icon">✨</div><h3>Innovation</h3><p>Un assistant IA pour accompagner chaque cliente dans son expérience beauté.</p></div><div class="value"><div class="icon">🇲🇦</div><h3>Authenticité</h3><p>Une beauté marocaine pensée pour aujourd’hui, avec une identité forte.</p></div></div></div></section>
+<section class="more" id="apropos"><div class="wrap"><div class="about-intro"><h2>L'HÉRITAGE MARROKIA</h2><p>MARROKIA revisite les rituels traditionnels marocains de beauté à travers une sélection de soins inspirés du savoir-faire ancestral marocain, avec une approche moderne et personnalisée grâce à l'intelligence artificielle.</p></div><div class="values"><div class="value"><div class="icon">🌿</div><h3>Tradition &amp; Nature</h3><p>Des soins inspirés des rituels marocains et de leurs savoir-faire traditionnels.</p></div><div class="value"><div class="icon">✨</div><h3>Innovation</h3><p>Un assistant IA pour accompagner chaque cliente dans son expérience beauté.</p></div><div class="value"><div class="icon">🇲🇦</div><h3>Authenticité</h3><p>Une beauté marocaine pensée pour aujourd'hui, avec une identité forte.</p></div></div></div></section>
 <section id="contact" style="background:#031b13;color:#fff;text-align:center;padding:65px 0"><div class="wrap"><h2>COMMANDER MARROKIA</h2><p style="font:13px Arial">Découvrez nos soins et préparez votre commande avec MARROKIA.</p><a class="btn" href="#" onclick="alert('Le contact WhatsApp sera ajouté prochainement.'); return false;">COMMANDER</a></div></section>
 <footer style="background:#02130d;color:#cdbb9a;padding:22px;text-align:center;font:11px Arial">© 2026 MARROKIA — L'ESSENCE DU MAROC</footer>
 
 <div class="modal" id="modal" onclick="closeModal(event)"><div class="modal-box" onclick="event.stopPropagation()"><button class="close" onclick="closeModal()">×</button><div class="modal-img"><img id="mi"></div><div class="modal-content"><h2 id="mt"></h2><div class="modal-price" id="mp"></div><p id="md"></p><a class="btn" href="#contact" onclick="closeModal()">🛍 COMMANDER</a></div></div></div>
+
+<div class="chat-overlay" id="chatOverlay">
+  <div class="chat">
+    <div class="chat-head">
+      <div><strong>Conseiller Beauté MARROKIA</strong><small><span class="status-dot"></span>En ligne</small></div>
+      <button class="chat-close" onclick="closeAssistant()">×</button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="msg bot">Salam ! Je suis votre conseiller beauté MARROKIA ✨ Dites-moi ce que vous cherchez (type de produit, type de peau, budget) et je vous recommande ce qui vous convient.</div>
+    </div>
+    <div class="chat-suggestions">
+      <button onclick="quickAsk('Je cherche une routine marocaine pour le corps')">🌿 Routine marocaine</button>
+      <button onclick="quickAsk('Quel produit pour une peau sèche ?')">💧 Peau sèche</button>
+      <button onclick="quickAsk('Quels produits sont disponibles ?')">🛍 Produits disponibles</button>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="chatInput" placeholder="Écrivez votre message...">
+      <button onclick="sendMessage()">➤</button>
+    </div>
+  </div>
+</div>
+
 <script>
 const p={
 savon:["SAVON BELDI","90 DH","savon-beldi.jpg","Savon noir traditionnel marocain à base d'huile d'olive et de Nila. Nettoie en profondeur et laisse la peau douce, saine et éclatante."],
@@ -59,14 +81,8 @@ const chatMessages=document.getElementById('chatMessages');
 function openAssistant(){chatOverlay.classList.add('show');document.body.style.overflow='hidden';setTimeout(()=>document.getElementById('chatInput').focus(),100)}
 function closeAssistant(){chatOverlay.classList.remove('show');document.body.style.overflow=''}
 function addMsg(text,type){const d=document.createElement('div');d.className='msg '+type;d.textContent=text;chatMessages.appendChild(d);chatMessages.scrollTop=chatMessages.scrollHeight}
-function quickAsk(text){openAssistant();addMsg(text,'user');setTimeout(()=>demoReply(text),350)}
-async function sendMessage(){
-  const input=document.getElementById('chatInput');
-  const text=input.value.trim();
-  if(!text)return;
-  input.value='';
-  addMsg(text,'user');
-  addMsg('...','bot-typing');
+function quickAsk(text){openAssistant();addMsg(text,'user');addMsg('...','bot-typing');callWebhook(text)}
+async function callWebhook(text){
   try{
     const res=await fetch('https://katben.app.n8n.cloud/webhook/marrokia-chat',{
       method:'POST',
@@ -82,3 +98,16 @@ async function sendMessage(){
     console.error('Erreur MARROKIA AI:',err);
   }
 }
+async function sendMessage(){
+  const input=document.getElementById('chatInput');
+  const text=input.value.trim();
+  if(!text)return;
+  input.value='';
+  addMsg(text,'user');
+  addMsg('...','bot-typing');
+  callWebhook(text);
+}
+document.getElementById('chatInput').addEventListener('keydown',e=>{if(e.key==='Enter')sendMessage()});
+</script>
+</body>
+</html>
