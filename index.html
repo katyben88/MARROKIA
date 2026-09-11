@@ -91,7 +91,7 @@ async function callWebhook(text){
     });
     const data=await res.json();
     document.querySelector('.msg.bot-typing')?.remove();
-    addMsg(data.reponse||'Sme7 liya, ma fhemtch mzyan. 3awed jarreb.','bot');
+    addMsg(data.output||'Sme7 liya, ma fhemtch mzyan. 3awed jarreb.','bot');
   }catch(err){
     document.querySelector('.msg.bot-typing')?.remove();
     addMsg('Sme7 liya, kayn mochkil technique daba. 3awed jarreb men b3d.','bot');
