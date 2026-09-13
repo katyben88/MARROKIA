@@ -27,7 +27,8 @@ nav{height:110px;background:#031b13;color:#e7bf65;display:flex;align-items:cente
 <a class="btn topbtn" href="#contact">🛍 COMMANDER</a>
 </div></nav>
 
-<header class="hero"><button class="hero-hotspot" onclick="document.getElementById('produits').scrollIntoView()"> </button></header><div class="hero-ai-cta"><a class="btn" href="#assistant">✨ CONSEILLER BEAUTÉ IA</a></div>
+<header class="hero"><button class="hero-hotspot" onclick="document.getElementById('produits').scrollIntoView()"> </button></header>
+
 
 <section class="products" id="produits"><div class="wrap">
 <div class="section-title"><h2>NOS PRODUITS</h2></div>
@@ -38,7 +39,7 @@ nav{height:110px;background:#031b13;color:#e7bf65;display:flex;align-items:cente
 <article class="card"><div class="visual"><img src="huile-corporelle.jpg"></div><div class="body"><h3>HUILE CORPORELLE</h3><p>Nourrit, hydrate et sublime tous les types de peau.</p><div class="price">150 DH</div><button class="btn discover" onclick="show('huile')">DÉCOUVRIR</button></div></article>
 </div></div></section>
 
-<section class="ai" id="assistant"><div class="wrap"><div class="ai-box"><div class="ai-copy"><div class="ai-badge">✨ VOTRE ASSISTANT BEAUTÉ IA</div><h2>Besoin d'aide pour choisir votre soin ?</h2><p>MARROKIA vous accompagne pour trouver le soin adapté à vos besoins, comprendre nos produits et découvrir une routine beauté marocaine personnalisée.</p><div class="ai-pills"><button onclick="quickAsk('Je cherche une routine marocaine pour le corps')">🌿 Routine marocaine</button><button onclick="quickAsk('Quel produit pour une peau sèche ?')">💧 Peau sèche</button><button onclick="quickAsk('Quels produits sont disponibles ?')">🛍 Produits disponibles</button></div></div><button class="btn ai-btn" onclick="openAssistant()">✨ CONSEILLER BEAUTÉ IA</button></div></div></section>
+<section class="ai" id="assistant"><div class="wrap"><div class="ai-box"><div class="ai-copy"><div class="ai-badge">✨ VOTRE ASSISTANT BEAUTÉ IA</div><h2>Besoin d'aide pour choisir votre soin ?</h2><p>MARROKIA vous accompagne pour trouver le soin adapté à vos besoins, comprendre nos produits et découvrir une routine beauté marocaine personnalisée.</p><div class="ai-pills"><button onclick="quickAsk('Je cherche une routine marocaine pour le corps')">🌿 Routine marocaine</button><button onclick="quickAsk('Quels produits sont disponibles ?')">🛍 Produits disponibles</button></div></div><button class="btn ai-btn" onclick="openAssistant()">✨ CONSEILLER BEAUTÉ IA</button></div></div></section>
 
 <section class="more" id="apropos"><div class="wrap"><div class="about-intro"><h2>L'HÉRITAGE MARROKIA</h2><p>MARROKIA revisite les rituels traditionnels marocains de beauté à travers une sélection de soins inspirés du savoir-faire ancestral marocain, avec une approche moderne et personnalisée grâce à l'intelligence artificielle.</p></div><div class="values"><div class="value"><div class="icon">🌿</div><h3>Tradition &amp; Nature</h3><p>Des soins inspirés des rituels marocains et de leurs savoir-faire traditionnels.</p></div><div class="value"><div class="icon">✨</div><h3>Innovation</h3><p>Un assistant IA pour accompagner chaque cliente dans son expérience beauté.</p></div><div class="value"><div class="icon">🇲🇦</div><h3>Authenticité</h3><p>Une beauté marocaine pensée pour aujourd'hui, avec une identité forte.</p></div></div></div></section>
 <section id="contact" style="background:#031b13;color:#fff;text-align:center;padding:65px 0"><div class="wrap"><h2>COMMANDER MARROKIA</h2><p style="font:13px Arial">Découvrez nos soins et préparez votre commande avec MARROKIA.</p><a class="btn" href="#" onclick="alert('Le contact WhatsApp sera ajouté prochainement.'); return false;">COMMANDER</a></div></section>
@@ -57,7 +58,6 @@ nav{height:110px;background:#031b13;color:#e7bf65;display:flex;align-items:cente
     </div>
     <div class="chat-suggestions">
       <button onclick="quickAsk('Je cherche une routine marocaine pour le corps')">🌿 Routine marocaine</button>
-      <button onclick="quickAsk('Quel produit pour une peau sèche ?')">💧 Peau sèche</button>
       <button onclick="quickAsk('Quels produits sont disponibles ?')">🛍 Produits disponibles</button>
     </div>
     <div class="chat-input">
