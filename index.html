@@ -82,7 +82,34 @@ function openAssistant(){chatOverlay.classList.add('show');document.body.style.o
 function closeAssistant(){chatOverlay.classList.remove('show');document.body.style.overflow=''}
 function addMsg(text,type){const d=document.createElement('div');d.className='msg '+type;d.textContent=text;chatMessages.appendChild(d);chatMessages.scrollTop=chatMessages.scrollHeight}
 function quickAsk(text){openAssistant();addMsg(text,'user');addMsg('...','bot-typing');callWebhook(text)}
+function pickFallback(userText){
+  const t = userText.toLowerCase();
+
+  // 1. Si caractères arabes (arabe classique ou darija en arabe)
+  if(/[\u0600-\u06FF]/.test(userText)){
+    return {
+      empty: 'سمح ليا، ما فهمتش مزيان. عاود جرب من فضلك.',
+      error: 'سمح ليا، كاين مشكل تقني دابا. عاود جرب من بعد.'
+    };
+  }
+
+  // 2. Si mots anglais courants
+  const englishWords = /\b(the|want|need|please|hello|hi|product|skin|body|price|how|what|can|you|help)\b/;
+  if(englishWords.test(t)){
+    return {
+      empty: 'Sorry, I didn\'t quite understand that. Could you rephrase?',
+      error: 'Sorry, a technical issue occurred. Please try again in a moment.'
+    };
+  }
+
+  // 3. Par défaut : français
+  return {
+    empty: 'Désolé, je n\'ai pas bien compris. Pourriez-vous reformuler ?',
+    error: 'Désolé, un souci technique est survenu. Merci de réessayer dans un instant.'
+  };
+}
 async function callWebhook(text){
+  const fb = pickFallback(text);
   try{
     const res=await fetch('https://katben.app.n8n.cloud/webhook/marrokia-chat',{
       method:'POST',
@@ -91,10 +118,10 @@ async function callWebhook(text){
     });
     const data=await res.json();
     document.querySelector('.msg.bot-typing')?.remove();
-    addMsg(data.output||'Sme7 liya, ma fhemtch mzyan. 3awed jarreb.','bot');
+    addMsg(data.output||fb.empty,'bot');
   }catch(err){
     document.querySelector('.msg.bot-typing')?.remove();
-    addMsg('Sme7 liya, kayn mochkil technique daba. 3awed jarreb men b3d.','bot');
+    addMsg(fb.error,'bot');
     console.error('Erreur MARROKIA AI:',err);
   }
 }
